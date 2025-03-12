@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Review</title>
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333; /* Dark text color */
+            overflow: hidden;
+            background: url('https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed; /* Attractive e-commerce background image */
+            background-size: cover;
+        }
+
+        /* Container styling */
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            backdrop-filter: blur(10px); /* Blur effect */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            z-index: 1; /* Ensure container is above background */
+        }
+
+        /* Heading styling */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #0077b6; /* Sky blue color */
+        }
+
+        /* Textarea styling */
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #0077b6; /* Sky blue border */
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            resize: none;
+            margin-bottom: 20px;
+        }
+
+        textarea::placeholder {
+            color: #999;
+        }
+
+        /* Button styling */
+        button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #0077b6; /* Sky blue background */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00b4d8; /* Lighter sky blue on hover */
+        }
+
+        /* Falling emojis animation */
+        @keyframes fall {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall linear infinite;
+            user-select: none; /* Prevent text selection */
+        }
+    </style>
+</head>
+<body>
+    <!-- Falling emojis -->
+    <div class="emoji" style="left: 5%; animation-duration: 10s;">🛒</div>
+    <div class="emoji" style="left: 15%; animation-duration: 8s;">📦</div>
+    <div class="emoji" style="left: 25%; animation-duration: 12s;">💳</div>
+    <div class="emoji" style="left: 35%; animation-duration: 9s;">📱</div>
+    <div class="emoji" style="left: 45%; animation-duration: 11s;">🛍️</div>
+    <div class="emoji" style="left: 55%; animation-duration: 7s;">🛒</div>
+    <div class="emoji" style="left: 65%; animation-duration: 10s;">📦</div>
+    <div class="emoji" style="left: 75%; animation-duration: 8s;">💳</div>
+    <div class="emoji" style="left: 85%; animation-duration: 12s;">📱</div>
+    <div class="emoji" style="left: 95%; animation-duration: 9s;">🛍️</div>
+
+    <!-- Main container -->
+    <div class="container">
+        <h1>Predict Review</h1>
+        <textarea id="reviewInput" placeholder="Enter your review here..."></textarea>
+        <button onclick="predictReview()">Predict</button>
+    </div>
+
+    <script>
+        // Function to predict and display result in a new tab
+        function predictReview() {
+            const review = document.getElementById('reviewInput').value.trim();
+
+            if (!review) {
+                alert("Please enter a review!");
+                return;
+            }
+
+            // Simulate prediction logic (replace with actual API call or model)
+            const isFake = Math.random() < 0.5; // Randomly decide fake or real
+            const result = isFake ? "FAKE" : "REAL";
+
+            // Open result in a new tab
+            const resultPage = window.open("", "_blank");
+            resultPage.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Prediction Result</title>
+                    <style>
+                        /* General body styling */
+                        body {
+                            margin: 0;
+                            padding: 0;
+                            font-family: Arial, sans-serif;
+                            height: 100vh;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: #333;
+                            overflow: hidden;
+                            background: url('https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed; /* Same e-commerce background image */
+                            background-size: cover;
+                        }
+
+                        /* Container styling */
+                        .container {
+                            text-align: center;
+                            padding: 40px;
+                            border-radius: 15px;
+                            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+                            backdrop-filter: blur(10px); /* Blur effect */
+                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                            max-width: 500px;
+                            width: 100%;
+                            z-index: 1; /* Ensure container is above background */
+                        }
+
+                        /* Heading styling */
+                        h1 {
+                            font-size: 2rem;
+                            margin-bottom: 20px;
+                            color: #0077b6; /* Sky blue color */
+                        }
+
+                        /* Result styling */
+                        #result {
+                            font-size: 1.5rem;
+                            color: ${result === "FAKE" ? "#ff6b6b" : "#4caf50"};
+                        }
+
+                        /* Falling emojis animation */
+                        @keyframes fall {
+                            0% {
+                                transform: translateY(-100%);
+                            }
+                            100% {
+                                transform: translateY(100vh);
+                            }
+                        }
+
+                        .emoji {
+                            position: absolute;
+                            font-size: 2rem;
+                            animation: fall linear infinite;
+                            user-select: none; /* Prevent text selection */
+                        }
+                    </style>
+                </head>
+                <body>
+                    <!-- Falling emojis -->
+                    <div class="emoji" style="left: 5%; animation-duration: 10s;">🛒</div>
+                    <div class="emoji" style="left: 15%; animation-duration: 8s;">📦</div>
+                    <div class="emoji" style="left: 25%; animation-duration: 12s;">💳</div>
+                    <div class="emoji" style="left: 35%; animation-duration: 9s;">📱</div>
+                    <div class="emoji" style="left: 45%; animation-duration: 11s;">🛍️</div>
+                    <div class="emoji" style="left: 55%; animation-duration: 7s;">🛒</div>
+                    <div class="emoji" style="left: 65%; animation-duration: 10s;">📦</div>
+                    <div class="emoji" style="left: 75%; animation-duration: 8s;">💳</div>
+                    <div class="emoji" style="left: 85%; animation-duration: 12s;">📱</div>
+                    <div class="emoji" style="left: 95%; animation-duration: 9s;">🛍️</div>
+
+                    <!-- Result container -->
+                    <div class="container">
+                        <h1>Prediction Result</h1>
+                        <div id="result">This review is likely <strong>${result}</strong>. ${result === "FAKE" ? "🚫" : "✅"}</div>
+                    </div>
+                </body>
+                </html>
+            `);
+            resultPage.document.close();
+        }
+    </script>
+</body>
+</html>

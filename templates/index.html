@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Review Detection</title>
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            overflow: hidden;
+            background: url('https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed; /* Attractive e-commerce background image */
+            background-size: cover;
+        }
+
+        /* Container styling */
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            backdrop-filter: blur(10px); /* Blur effect */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            z-index: 1; /* Ensure container is above background */
+        }
+
+        /* Heading styling */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #0077b6; /* Sky blue color */
+            font-weight: bold;
+        }
+
+        /* Button styling */
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #0077b6; /* Sky blue background */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00b4d8; /* Lighter sky blue on hover */
+        }
+
+        /* Textarea styling */
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #0077b6; /* Sky blue border */
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            resize: none;
+            margin-bottom: 20px;
+        }
+
+        textarea::placeholder {
+            color: #999;
+        }
+
+        /* Hidden input section */
+        #inputSection {
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <!-- Homepage container -->
+    <div class="container" id="homepage">
+        <h1>Fake Review Detection</h1>
+        <button onclick="showInputSection()">Enter Text Here</button>
+    </div>
+
+    <!-- Input section container -->
+    <div class="container" id="inputSection">
+        <h1>Enter Your Review</h1>
+        <textarea id="reviewInput" placeholder="Type your review here..."></textarea>
+        <button onclick="predictReview()">Predict</button>
+    </div>
+
+    <script>
+        // Function to show the input section and hide the homepage
+        function showInputSection() {
+            document.getElementById('homepage').style.display = 'none'; // Hide homepage
+            document.getElementById('inputSection').style.display = 'block'; // Show input section
+        }
+
+        // Function to predict and display result
+        function predictReview() {
+            const review = document.getElementById('reviewInput').value.trim();
+
+            if (!review) {
+                alert("Please enter a review!");
+                return;
+            }
+
+            // Simulate prediction logic (replace with actual API call or model)
+            const isFake = Math.random() < 0.5; /* Randomly decide fake or real */
+            const result = isFake ? "FAKE" : "REAL";
+
+            // Display result in an alert (you can replace this with a modal or new page)
+            alert(`This review is likely ${result}. ${result === "FAKE" ? "🚫" : "✅"}`);
+        }
+    </script>
+</body>
+</html>
