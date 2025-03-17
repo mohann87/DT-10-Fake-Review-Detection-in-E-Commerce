@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Review Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            background-color:rgb(184, 61, 61);
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: auto;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ae7f7f;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #prediction {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Fake Review Prediction</h2>
+        <textarea id="reviewInput" placeholder="Enter your review here..."></textarea>
+        <button onclick="predictFakeReview()">Predict</button>
+        <p id="prediction"></p>
+    </div>
+
+    <script>
+        function predictFakeReview() {
+            const review = document.getElementById("reviewInput").value.trim();
+            const predictionElement = document.getElementById("prediction");
+            
+            if (review === "") {
+                predictionElement.innerText = "Please enter a review.";
+                predictionElement.style.color = "red";
+                return;
+            }
+            
+            // Simulated AI prediction logic (Replace with real ML model call)
+            const isFake = Math.random() < 0.5; // Mock prediction
+            
+            predictionElement.innerText = isFake ? "Prediction: Fake Review!" : "Prediction: Genuine Review!";
+            predictionElement.style.color = isFake ? "red" : "green";
+        }
+    </script>
+</body>
+</html>

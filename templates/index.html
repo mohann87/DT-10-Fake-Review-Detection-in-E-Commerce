@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Review Detection</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: rgb(82, 255, 241); /* Text color */
+            background-image: url('/static/bgreview.jpg'); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background */
+            background-repeat: no-repeat; /* Prevent repetition */
+        }
+
+        /* Container for Content */
+         .container {
+            text-align: center;
+            background: rgba(158, 145, 62, 0.9); /* Slight transparency */
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+                     
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Textarea Styling */
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #4a3f7e; /* Green background */
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .logo{
+            width: 50px;
+            height:auto;
+            margin-right: 15px;
+        }
+        button:hover {
+            background-color: #944d9a; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/static/logo.png"  alt="Website Logo" class="logo">
+    </header>
+</body>
+<body>
+    <div class="container">
+        <h1>Fake Review Detection</h1>
+        <p>Enter your review below to detect if it's fake or genuine.</p>
+        
+        <!-- Review Input Form -->
+        <form onsubmit="analyzeReview(event)">
+            <textarea id="review-text" placeholder="Enter your review here..." rows="5" required></textarea>
+            <button type="submit">Analyze Review</button>
+        </form>
+
+        <!-- Result Display -->
+        <div id="result" style="margin-top: 1rem; font-size: 1.2rem;"></div>
+    </div>
+
+    <script>
+        function analyzeReview(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the review text
+            const reviewText = document.getElementById('review-text').value;
+
+            // Simulate analysis (replace with actual API call)
+            const isFake = Math.random() > 0.5; // Random result for demonstration
+            const resultText = isFake ? "This review is likely FAKE." : "This review is likely GENUINE.";
+
+            // Display the result
+            document.getElementById('result').textContent = resultText;
+        }
+    </script>
+</body>
+</html>
